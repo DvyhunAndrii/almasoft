@@ -125,7 +125,7 @@ legend {
   display: block;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter";
   background-color: #e0e0e0;
   width: 1920px;
   padding: 15px 0 22px;
