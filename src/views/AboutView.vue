@@ -1,5 +1,8 @@
 <template>
   <div class="Services">
-    <h1>Services</h1>
+    <div class="container">
+      <h1>Services</h1>
+    </div>
   </div>
 </template>
+<style scoped lang="scss"></style>

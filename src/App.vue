@@ -127,11 +127,14 @@ legend {
 #app {
   font-family: "Inter";
   background-color: #e0e0e0;
-  width: 1920px;
+  max-width: 1920px;
   padding: 15px 0 22px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 .container {
   width: 1572px;
+  margin: 0 auto;
 }
 .main-nav {
   display: flex;
