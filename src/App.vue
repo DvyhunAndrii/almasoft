@@ -18,10 +18,47 @@
         </div>
       </div>
     </nav>
-    <router-view />
+    <main-view />
+    <about-us />
+    <our-team />
+    <case-study />
+    <!-- <router-view /> -->
   </div>
 </template>
+<script>
+import MainView from "@/components/MainView.vue";
+import AboutUs from "./components/AboutUs.vue";
+import OurTeam from "./components/OurTeam.vue";
+import CaseStudy from "./components/CaseStudy.vue";
 
+export default {
+  components: {
+    MainView,
+    AboutUs,
+    CaseStudy,
+    OurTeam,
+  },
+  data() {
+    return {
+      show1: false,
+    };
+  },
+  methods: {
+    consoleView() {
+      console.log(this.show, "hei");
+    },
+    onScroll() {
+      console.log("onScroll");
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+    setTimeout(() => {
+      this.show1 = true;
+    }, "500");
+  },
+};
+</script>
 <style lang="scss">
 * {
   padding: 0px;
@@ -139,8 +176,14 @@ legend {
 .main-nav {
   display: flex;
   justify-content: center;
-  padding-bottom: 16px;
+  padding: 15px 0;
   border-bottom: 1px solid #c2c2c2;
+  position: fixed;
+  z-index: 10;
+  background: #e0e0e0;
+  top: 0;
+  width: 100%;
+  max-width: 1920px;
 }
 nav .container {
   display: flex;
