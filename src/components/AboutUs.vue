@@ -16,17 +16,17 @@
       <ul v-if="show2" class="info">
         <li class="info__block info__innovative">
           <div class="info__item">
-            <div class="info__title">94%</div>
+            <div class="info__title">100%</div>
             <div class="info__subtitle">satisfied clients</div>
           </div>
-          <div class="info__item blue">
+          <div class="info__item">
             <div class="info__title">Full Cycle</div>
             <div class="info__subtitle">Development</div>
           </div>
-          <div class="info__item blue">
+          <!-- <div class="info__item blue">
             <div class="info__title">More 10 years</div>
             <div class="info__subtitle">experience</div>
-          </div>
+          </div> -->
           <div class="info__item">
             <div class="info__title">Innovative</div>
             <div class="info__subtitle">solutions</div>
@@ -37,32 +37,32 @@
             <div class="info__title">More 60</div>
             <div class="info__subtitle">success projects</div>
           </div>
-          <div class="info__item blue">
+          <div class="info__item">
             <div class="info__title">Support</div>
             <div class="info__subtitle">and maintenance services</div>
           </div>
-          <div class="info__item blue">
+          <div class="info__item">
             <div class="info__title">Permanent</div>
             <div class="info__subtitle">development</div>
           </div>
-          <div class="info__item">
+          <!-- <div class="info__item">
             <div class="info__title">High</div>
             <div class="info__subtitle">Performance Team</div>
-          </div>
+          </div> -->
         </li>
         <li class="info__block info__innovative">
           <div class="info__item">
             <div class="info__title">53% clients</div>
             <div class="info__subtitle">turned to us again</div>
           </div>
-          <div class="info__item blue">
+          <div class="info__item">
             <div class="info__title">Focus</div>
             <div class="info__subtitle">on long-term relationships</div>
           </div>
-          <div class="info__item blue">
+          <!-- <div class="info__item blue">
             <div class="info__title">Direct</div>
             <div class="info__subtitle">communication</div>
-          </div>
+          </div> -->
           <div class="info__item">
             <div class="info__title">Well</div>
             <div class="info__subtitle">coordinated team</div>
@@ -127,11 +127,13 @@ export default {
   flex-direction: column;
 
   .left {
-    height: 980px;
+    height: 1080px;
     flex-direction: column;
     color: #ffffff;
     background-image: url("@/assets/laptop.png");
     background-repeat: no-repeat;
+    position: relative;
+
     .left__title {
       margin: 355px 0 0 191px;
       font-size: 85px;
@@ -167,7 +169,7 @@ export default {
     }
   }
   .info {
-    height: 980px;
+    height: 1080px;
     display: flex;
     flex-direction: column;
     color: #ffffff;

@@ -11,17 +11,17 @@
           </router-link>
         </div>
         <div class="main-nav__links">
-          <router-link to="/services">Services</router-link>
-          <router-link to="/services">Our specialists</router-link>
-          <router-link to="/services">Featured projects</router-link>
-          <router-link to="/services">Talk to us</router-link>
+          <router-link to="/services">About us</router-link>
+          <router-link to="/services">Our team</router-link>
+          <router-link to="/services">Portfolio</router-link>
+          <router-link to="/services">Contact us</router-link>
         </div>
       </div>
     </nav>
     <main-view />
     <about-us />
     <our-team />
-    <case-study />
+    <portfolio />
     <!-- <router-view /> -->
   </div>
 </template>
@@ -29,13 +29,13 @@
 import MainView from "@/components/MainView.vue";
 import AboutUs from "./components/AboutUs.vue";
 import OurTeam from "./components/OurTeam.vue";
-import CaseStudy from "./components/CaseStudy.vue";
+import Portfolio from "./components/Portfolio.vue";
 
 export default {
   components: {
     MainView,
     AboutUs,
-    CaseStudy,
+    Portfolio,
     OurTeam,
   },
   data() {
@@ -180,10 +180,22 @@ legend {
   border-bottom: 1px solid #c2c2c2;
   position: fixed;
   z-index: 10;
-  background: #e0e0e0;
   top: 0;
   width: 100%;
   max-width: 1920px;
+}
+.main-nav::after {
+  content: "";
+  filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
 }
 nav .container {
   display: flex;

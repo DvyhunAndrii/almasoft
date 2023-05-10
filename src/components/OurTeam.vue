@@ -26,12 +26,7 @@
           <img src="@/assets/team/3.png" alt="team img" />
         </div>
         <div class="right__content">
-          <div class="right__img">
-            <img src="@/assets/team/meteor.png" alt="team img" />
-          </div>
-          <div class="right__img">
-            <img src="@/assets/team/postgresql.png" alt="team img" />
-          </div>
+          <img src="@/assets/team/5.png" alt="team img" />
         </div>
       </div>
     </transition>
@@ -85,13 +80,12 @@ export default {
 }
 .main {
   display: flex;
-  height: 980px;
+  height: 1080px;
   background-image: url("@/assets/Vector.png");
   background-position: 0 32px;
   background-repeat: no-repeat;
-  margin-top: 274px;
+  margin-top: 450px;
   .left {
-    align-self: center;
     margin-left: 191px;
     position: relative;
     height: 100%;
@@ -148,9 +142,11 @@ export default {
     align-self: flex-end;
     position: relative;
     right: 0.5px;
-    top: -220px;
+    top: 140px;
     display: flex;
     flex-direction: column;
+    max-width: 1084px;
+    width: 100%;
     .right__content:nth-child(1) {
       width: 490px;
       height: 325px;
@@ -162,8 +158,29 @@ export default {
       width: 493px;
       height: 338px;
       position: relative;
-      right: 48px;
+      align-self: flex-end;
       z-index: 2;
+      top: -100px;
+    }
+    .right__content:nth-child(3) {
+      width: 420px;
+      height: 294px;
+      position: relative;
+      z-index: 1;
+      top: -250px;
+    }
+    .right__content:nth-child(4) {
+      width: 600px;
+      height: 466px;
+      background-color: #ffffff;
+      position: relative;
+      align-self: flex-end;
+      z-index: 2;
+      top: -326px;
+      margin-right: 110px;
+      border-radius: 20px 2px 2px 2px;
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
