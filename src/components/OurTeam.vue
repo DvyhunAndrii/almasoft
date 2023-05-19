@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <section id="our-team" class="our-team">
     <transition name="fade">
       <div v-if="show1" class="left">
         <div class="left__title">Our team</div>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -78,13 +78,14 @@ export default {
   transform: translateX(600px);
   opacity: 0;
 }
-.main {
+.our-team {
   display: flex;
   height: 1080px;
   background-image: url("@/assets/Vector.png");
   background-position: 0 32px;
   background-repeat: no-repeat;
-  margin-top: 450px;
+  padding-top: 274px;
+  overflow: hidden;
   .left {
     margin-left: 191px;
     position: relative;
@@ -134,15 +135,14 @@ export default {
     }
     .left__btn:hover {
       transition: 0.5s;
-      background-color: #ffffff;
-      color: #3777f3;
+      background-color: #16449e;
     }
   }
   .right {
     align-self: flex-end;
     position: relative;
     right: 0.5px;
-    top: 140px;
+    top: 486px;
     display: flex;
     flex-direction: column;
     max-width: 1084px;
@@ -176,7 +176,7 @@ export default {
       position: relative;
       align-self: flex-end;
       z-index: 2;
-      top: -326px;
+      top: -348px;
       margin-right: 110px;
       border-radius: 20px 2px 2px 2px;
       display: flex;

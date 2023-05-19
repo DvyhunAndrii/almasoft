@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <section id="about-us" class="about-us">
     <transition name="fade">
       <div v-if="show1" class="left">
         <div class="left__title">Alma-Soft</div>
@@ -70,7 +70,7 @@
         </li>
       </ul>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -122,18 +122,28 @@ export default {
   transform: translateX(600px);
   opacity: 0;
 }
-.main {
+.about-us {
   display: flex;
   flex-direction: column;
-
+  background-image: url("@/assets/laptop.jpg");
+  background-repeat: no-repeat;
   .left {
     height: 1080px;
     flex-direction: column;
     color: #ffffff;
-    background-image: url("@/assets/laptop.png");
-    background-repeat: no-repeat;
+    // background-image: url("@/assets/laptop.png");
+    // background-repeat: no-repeat;
     position: relative;
-
+    &:after {
+      content: "";
+      position: absolute;
+      top: 79%;
+      left: 0;
+      background-image: url("@/assets/AlmaSoft.png");
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+    }
     .left__title {
       margin: 355px 0 0 191px;
       font-size: 85px;
@@ -164,8 +174,7 @@ export default {
     }
     .left__btn:hover {
       transition: 0.5s;
-      background-color: #ffffff;
-      color: #3777f3;
+      background-color: #16449e;
     }
   }
   .info {
@@ -173,9 +182,20 @@ export default {
     display: flex;
     flex-direction: column;
     color: #ffffff;
-    background-image: url("@/assets/laptop-next.png");
-    background-repeat: no-repeat;
+    // background-image: url("@/assets/laptop-next.png");
+    // background-repeat: no-repeat;
     padding-top: 256px;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 79%;
+      left: 0;
+      background-image: url("@/assets/AlmaSoft.png");
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+    }
     .info__block {
       display: flex;
       justify-content: space-between;

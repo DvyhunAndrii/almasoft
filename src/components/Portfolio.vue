@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <section id="portfolio" class="portfolio">
     <transition name="fade">
       <div v-if="show1" class="left">
         <div class="left__title">Case Study</div>
@@ -47,7 +47,7 @@
         </div>
       </ssr-carousel>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -95,17 +95,28 @@ export default {
   transform: translateX(600px);
   opacity: 0;
 }
-.main {
+.portfolio {
   display: flex;
   height: 1080px;
   justify-content: space-between;
   background: linear-gradient(229.42deg, #0b0d0b 48.14%, #0b2a4b 79.15%);
   background-repeat: no-repeat;
-  margin-top: 99px;
+  padding-top: 99px;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 79%;
+    left: 0;
+    background-image: url("@/assets/AlmaSoft.png");
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+  }
   .left {
     margin-left: 191px;
     position: relative;
-    top: 450px;
+    top: 255px;
     height: 100%;
     .left__title {
       font-size: 70px;
@@ -142,12 +153,11 @@ export default {
     }
     .left__btn:hover {
       transition: 0.5s;
-      background-color: #ffffff;
-      color: #3777f3;
+      background-color: #16449e;
     }
   }
   .right {
-    align-items: center;
+    margin-top: 140px;
     display: flex;
     color: #ffffff;
 

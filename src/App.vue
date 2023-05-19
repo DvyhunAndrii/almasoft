@@ -1,27 +1,30 @@
 <template>
   <div id="app">
+    <span id="home"></span>
     <nav class="main-nav">
       <div class="container">
         <div class="main-nav__logo">
-          <router-link to="/">
-            <div class="main-nav-logo">
-              <img alt="Home" src="@/assets/logo-big.svg" />
-              <img alt="Home" src="@/assets/logo-small.svg" />
-            </div>
-          </router-link>
+          <a href="#home" class="main-nav-logo">
+            <img alt="Home" src="@/assets/logo-big.svg" />
+            <img alt="Home" src="@/assets/logo-small.svg" />
+          </a>
         </div>
         <div class="main-nav__links">
-          <router-link to="/services">About us</router-link>
-          <router-link to="/services">Our team</router-link>
-          <router-link to="/services">Portfolio</router-link>
-          <router-link to="/services">Contact us</router-link>
+          <a href="#about-us">About us</a>
+          <a href="#our-team">Our team</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#contact-us">Contact us</a>
         </div>
       </div>
     </nav>
-    <main-view />
-    <about-us />
-    <our-team />
-    <portfolio />
+    <main>
+      <main-view />
+      <about-us />
+      <our-team />
+      <portfolio />
+      <contact-us />
+    </main>
+
     <!-- <router-view /> -->
   </div>
 </template>
@@ -30,6 +33,7 @@ import MainView from "@/components/MainView.vue";
 import AboutUs from "./components/AboutUs.vue";
 import OurTeam from "./components/OurTeam.vue";
 import Portfolio from "./components/Portfolio.vue";
+import ContactUs from "./components/ContactUs.vue";
 
 export default {
   components: {
@@ -37,6 +41,7 @@ export default {
     AboutUs,
     Portfolio,
     OurTeam,
+    ContactUs,
   },
   data() {
     return {
@@ -165,12 +170,12 @@ legend {
   font-family: "Inter";
   background-color: #e0e0e0;
   max-width: 1920px;
-  padding: 15px 0 22px;
+  padding: 15px 0 0;
   overflow: hidden;
   margin: 0 auto;
 }
 .container {
-  width: 1572px;
+  width: 1538px;
   margin: 0 auto;
 }
 .main-nav {
@@ -264,5 +269,14 @@ nav .container {
   font-display: auto;
   unicode-range: U+000-5FF;
   src: local("Inter"), url("@/fonts/Inter-ExtraBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Source Sans Pro";
+  font-weight: 400;
+  font-style: normal;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: local("Source Sans Pro"),
+    url("@/fonts/SourceSansPro-Regular.ttf") format("truetype");
 }
 </style>

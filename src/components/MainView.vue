@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <section class="home">
     <transition name="fade">
       <div v-if="show1" class="left">
         <div class="left__title">
@@ -16,7 +16,7 @@
         </div>
       </div>
     </transition>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -67,7 +67,7 @@ export default {
   transform: translateX(600px);
   opacity: 0;
 }
-.main {
+.home {
   display: flex;
   height: 980px;
   justify-content: space-between;
@@ -106,8 +106,7 @@ export default {
     }
     .left__btn:hover {
       transition: 0.5s;
-      background-color: #ffffff;
-      color: #3777f3;
+      background-color: #16449e;
     }
   }
   .right {
