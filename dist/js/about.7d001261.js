@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkalma_soft"]=self["webpackChunkalma_soft"]||[]).push([[443],{981:function(s,t,e){e.r(t),e.d(t,{default:function(){return u}});var n=function(){var s=this;s._self._c;return s._m(0)},a=[function(){var s=this,t=s._self._c;return t("div",{staticClass:"Services"},[t("div",{staticClass:"container"},[t("h1",[s._v("Services")])])])}],r=e(1001),c={},i=(0,r.Z)(c,n,a,!1,null,"22d05811",null),u=i.exports}}]);
+//# sourceMappingURL=about.7d001261.js.map
