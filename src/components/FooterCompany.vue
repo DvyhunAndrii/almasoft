@@ -98,6 +98,11 @@ footer {
       margin-right: 20px;
     }
   }
+  .footer-up__mail {
+    color: #1378d5;
+    font-size: 16px;
+    line-height: 150%;
+  }
   .footer-down {
     font-family: "Source Sans Pro";
     font-style: normal;
