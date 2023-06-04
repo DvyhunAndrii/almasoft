@@ -1,79 +1,82 @@
 <template>
   <section id="contact-us" class="contact-us">
     <div class="contact-us__main">
-      <transition name="fade">
-        <div v-if="show1" class="left">
-          <div class="left__title">Contact us</div>
-          <div class="left__subtitle">
-            <div class="left__circle">or</div>
-            <div class="left__questions">
-              <div class="left__question">Have a question?</div>
-              <div class="left__question">Need a new project?</div>
-              <div class="left__question">Just say hello?</div>
+      <!-- <transition> -->
+      <div class="left">
+        <div class="left__title">Contact us</div>
+        <div class="left__subtitle">
+          <div class="left__circle">or</div>
+          <div class="left__questions">
+            <div class="left__question">Have a question?</div>
+            <div class="left__question">Need a new project?</div>
+            <div class="left__question">Just say hello?</div>
+          </div>
+        </div>
+      </div>
+      <!-- </transition> -->
+      <!-- <transition name="slide-fade"> -->
+      <form class="right">
+        <div class="right__title">Send Us a Message</div>
+        <div class="right__name right-input">
+          <input type="text" class="name" />
+          <div class="right__checking">
+            <div v-if="name" class="check">
+              <img src="@/assets/check.svg" alt="check img" />
+            </div>
+            <div v-else class="uncheck">
+              <img src="@/assets/uncheck.svg" alt="check img" />
             </div>
           </div>
         </div>
-      </transition>
-      <transition name="slide-fade">
-        <form v-if="show1" class="right">
-          <div class="right__title">Send Us a Message</div>
-          <div class="right__name right-input">
-            <input type="text" class="name" />
-            <div class="right__checking">
-              <div v-if="name" class="check">
-                <img src="@/assets/check.svg" alt="check img" />
-              </div>
-              <div v-else class="uncheck">
-                <img src="@/assets/uncheck.svg" alt="check img" />
-              </div>
+        <div class="right__mail right-input">
+          <input type="text" class="mail" />
+          <div class="right__checking">
+            <div v-if="mail" class="check">
+              <img src="@/assets/check.svg" alt="check img" />
+            </div>
+            <div v-else class="uncheck">
+              <img src="@/assets/uncheck.svg" alt="check img" />
             </div>
           </div>
-          <div class="right__mail right-input">
-            <input type="text" class="mail" />
-            <div class="right__checking">
-              <div v-if="mail" class="check">
-                <img src="@/assets/check.svg" alt="check img" />
-              </div>
-              <div v-else class="uncheck">
-                <img src="@/assets/uncheck.svg" alt="check img" />
-              </div>
-            </div>
+        </div>
+        <div class="right__error">Проверте правильность написания адреса</div>
+        <textarea rows="3" class="right__message" placeholder="Message">
+        </textarea>
+        <div class="right__buttons">
+          <div class="right__add">add file for upload</div>
+          <div class="right__submit">SUBMIT</div>
+        </div>
+        <div class="right__photos">
+          <div class="right__photo">
+            <span>Our company photo.jpg</span>
+            <span class="right__remove"
+              ><img src="@/assets/x.svg" alt="x img"
+            /></span>
           </div>
-          <div class="right__error">Проверте правильность написания адреса</div>
-          <textarea rows="3" class="right__message" placeholder="Message">
-          </textarea>
-          <div class="right__buttons">
-            <div class="right__add">add file for upload</div>
-            <div class="right__submit">SUBMIT</div>
+          <div class="right__photo">
+            <span>Photo.jpg</span>
+            <span class="right__remove"
+              ><img src="@/assets/x.svg" alt="x img"
+            /></span>
           </div>
-          <div class="right__photos">
-            <div class="right__photo">
-              <span>Our company photo.jpg</span>
-              <span class="right__remove"
-                ><img src="@/assets/x.svg" alt="x img"
-              /></span>
-            </div>
-            <div class="right__photo">
-              <span>Photo.jpg</span>
-              <span class="right__remove"
-                ><img src="@/assets/x.svg" alt="x img"
-              /></span>
-            </div>
-            <div class="right__photo">
-              <span>Photo.jpg</span>
-              <span class="right__remove"
-                ><img src="@/assets/x.svg" alt="x img"
-              /></span>
-            </div>
+          <div class="right__photo">
+            <span>Photo.jpg</span>
+            <span class="right__remove"
+              ><img src="@/assets/x.svg" alt="x img"
+            /></span>
           </div>
-        </form>
-      </transition>
+        </div>
+      </form>
+      <!-- </transition> -->
     </div>
     <footer-company />
   </section>
 </template>
 
 <script>
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 import FooterCompany from "@/components/FooterCompany.vue";
 export default {
   name: "ContactUs",
@@ -87,54 +90,21 @@ export default {
       mail: false,
     };
   },
-  methods: {
-    consoleView() {
-      console.log(this.show, "hei");
-    },
-    onScroll() {
-      console.log("onScroll");
-    },
-  },
-  mounted() {
-    window.addEventListener("scroll", this.onScroll);
-    setTimeout(() => {
-      this.show1 = true;
-    }, "500");
-  },
+  methods: {},
+  mounted: function () {},
 };
 </script>
 
 <style scoped lang="scss">
-.vis {
-  visibility: hidden;
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 2s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-.slide-fade-enter-active {
-  transition: all 1s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active до версии 2.1.8 */ {
-  transform: translateX(600px);
-  opacity: 0;
-}
 .contact-us {
-  background-image: url("@/assets/Vector.png");
-  background-repeat: no-repeat;
+  background-color: #e0e0e0;
   padding-top: 99px;
+  height: 1680px;
 }
 .contact-us__main {
   display: flex;
   height: 910px;
+  padding-top: 150px;
 
   .left {
     align-self: center;

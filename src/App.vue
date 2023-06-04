@@ -5,8 +5,8 @@
       <div class="container">
         <div class="main-nav__logo">
           <a href="#home" class="main-nav-logo">
-            <img alt="Home" src="@/assets/logo-big.svg" />
-            <img alt="Home" src="@/assets/logo-small.svg" />
+            <div class="main-nav-logo__big"></div>
+            <div class="main-nav-logo__small"></div>
           </a>
         </div>
         <div class="main-nav__links">
@@ -18,11 +18,21 @@
       </div>
     </nav>
     <main>
-      <main-view />
-      <about-us />
-      <our-team />
-      <portfolio />
-      <contact-us />
+      <div class="slide slide-1">
+        <main-view />
+      </div>
+      <div class="slide slide-2">
+        <about-us />
+      </div>
+      <div class="slide slide-3">
+        <our-team />
+      </div>
+      <div class="slide slide-4">
+        <portfolio />
+      </div>
+      <div class="slide slide-5">
+        <contact-us />
+      </div>
     </main>
 
     <!-- <router-view /> -->
@@ -34,6 +44,9 @@ import AboutUs from "./components/AboutUs.vue";
 import OurTeam from "./components/OurTeam.vue";
 import Portfolio from "./components/Portfolio.vue";
 import ContactUs from "./components/ContactUs.vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 export default {
   components: {
@@ -49,18 +62,72 @@ export default {
     };
   },
   methods: {
-    consoleView() {
-      console.log(this.show, "hei");
-    },
-    onScroll() {
-      console.log("onScroll");
+    scrollAnimation() {
+      // const slide1 = document.querySelector(".slide-1");
+      // const home = document.querySelector(".home");
+      // const slide2 = document.querySelector(".slide-2");
+      // const slide3 = document.querySelector(".slide-3");
+      // const slide4 = document.querySelector(".slide-4");
+      // const slide5 = document.querySelector(".slide-5");
+
+      // старая врерсия
+      // ScrollTrigger.create({
+      //   trigger: slide1,
+      //   start: "top",
+      //   end: "+=1080",
+      //   pinSpacing: false,
+      //   pin: true,
+      // });
+      // старая врерсия
+
+      // ScrollTrigger.create({
+      //   trigger: slide2,
+      //   start: "top",
+      //   end: "+=3160",
+      //   pinSpacing: false,
+      //   pin: true,
+      // });
+
+      // ScrollTrigger.create({
+      //   trigger: slide3,
+      //   start: "top",
+      //   end: "+=1080",
+      //   markers: true,
+      //   pinSpacing: false,
+      //   pin: true,
+      // });
+
+      // ScrollTrigger.create({
+      //   trigger: slide2,
+      //   start: "top center",
+      //   end: "+=200", // 200px past the start
+      //   pin: slide2,
+      // });
+
+      let tl = gsap.timeline();
+      tl.to(".main-nav", {
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".main-nav",
+          toggleClass: "white",
+          start: "1080px",
+          end: "3700px",
+        },
+      });
+      tl.to(".main-nav", {
+        duration: 1,
+        scrollTrigger: {
+          trigger: ".main-nav",
+          toggleClass: "white",
+          start: "6850px",
+          end: "7900px",
+        },
+      });
+      // });
     },
   },
   mounted() {
-    window.addEventListener("scroll", this.onScroll);
-    setTimeout(() => {
-      this.show1 = true;
-    }, "500");
+    this.scrollAnimation();
   },
 };
 </script>
@@ -168,11 +235,12 @@ legend {
 }
 #app {
   font-family: "Inter";
-  background-color: #e0e0e0;
+  // background-color: #e0e0e0;
   max-width: 1920px;
-  padding: 15px 0 0;
+  // padding: 15px 0 0;
   overflow: hidden;
   margin: 0 auto;
+  background-color: #e0e0e0;
 }
 .container {
   width: 1538px;
@@ -182,16 +250,16 @@ legend {
   display: flex;
   justify-content: center;
   padding: 15px 0;
-  border-bottom: 1px solid #c2c2c2;
+
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   top: 0;
   width: 100%;
   max-width: 1920px;
 }
 .main-nav::after {
   content: "";
-  filter: blur(20px);
+  filter: blur(10px);
   background: rgba(255, 255, 255, 0.1);
   width: 100%;
   height: 100%;
@@ -200,7 +268,29 @@ legend {
   right: 0;
   top: 0;
   bottom: 0;
+  backdrop-filter: blur(1px);
   z-index: -1;
+  box-shadow: 0 2px 3px -2px #c2c2c2;
+  border-bottom: 1px solid #c2c2c2;
+}
+nav.white .container a {
+  color: #ffffff;
+  transition: 1s;
+  .main-nav-logo__big {
+    width: 68px;
+    height: 68px;
+    margin-right: 8px;
+    background-image: url("@/assets/logo-big-white.png");
+    background-repeat: no-repeat;
+    transition: 1s;
+  }
+  .main-nav-logo__small {
+    width: 46.39px;
+    height: 35.2px;
+    background-image: url("@/assets/logo-small-white.png");
+    background-repeat: no-repeat;
+    transition: 1s;
+  }
 }
 nav .container {
   display: flex;
@@ -208,12 +298,30 @@ nav .container {
   justify-content: space-between;
   .main-nav-logo {
     display: flex;
+    align-items: center;
+    .main-nav-logo__big {
+      width: 68px;
+      height: 68px;
+      margin-right: 8px;
+      background-image: url("@/assets/logo-big.png");
+      background-repeat: no-repeat;
+      transition: 1s;
+    }
+    .main-nav-logo__small {
+      width: 46.39px;
+      height: 35.2px;
+      background-image: url("@/assets/logo-small.png");
+      background-repeat: no-repeat;
+      transition: 1s;
+    }
   }
   a {
     color: #004ca9;
     font-family: "inter";
-    font-weight: bold;
+    font-weight: 700;
     font-size: 24px;
+    line-height: 29px;
+    transition: 1s;
   }
   .main-nav__links {
     max-width: 839px;
@@ -222,6 +330,30 @@ nav .container {
     justify-content: space-between;
   }
 }
+.slide {
+  position: relative;
+}
+.slide-1 {
+  z-index: 20;
+  // top: 1080px;
+}
+.slide-2 {
+  z-index: 10;
+  top: -1080px;
+}
+.slide-3 {
+  top: 500px;
+  z-index: 20;
+}
+.slide-4 {
+  top: 1550px;
+  z-index: 10;
+}
+.slide-5 {
+  top: 500px;
+  z-index: 20;
+}
+
 @font-face {
   font-family: "Inter";
   font-weight: 300;
@@ -280,3 +412,99 @@ nav .container {
     url("@/fonts/SourceSansPro-Regular.ttf") format("truetype");
 }
 </style>
+
+<!-- tl.to(slide2, {
+  scrollTrigger: {
+    trigger: slide1,
+    start: "0",
+    end: "+=1780",
+    scrub: true,
+    pinSpacing: false,
+    pin: slide2,
+  },
+});
+tl.to(".about-us__left", {
+  opacity: 1,
+  y: -400,
+  scrollTrigger: {
+    trigger: slide1,
+    start: "1080",
+    end: "+=600",
+    scrub: 1,
+  },
+});
+tl.to(".info", {
+  opacity: 1,
+  y: 1050,
+  scrollTrigger: {
+    trigger: slide1,
+    start: "2300 top",
+    end: "+=1400",
+    scrub: 0.1,
+    // markers: true,
+  },
+});
+tl.to(".about-us__alma-soft", {
+  opacity: 0.6,
+  y: 1350,
+  scrollTrigger: {
+    trigger: slide1,
+    start: "1800 top",
+    end: "+=1850",
+    scrub: 0.1,
+  },
+});
+tl.to(".info__1", {
+  opacity: 1,
+  duration: 1,
+  // y: -400,
+  scrollTrigger: {
+    trigger: ".about-us",
+    start: "2300 top",
+    end: "+=200",
+    scrub: true,
+    // markers: true,
+  },
+});
+tl.to(".info__2", {
+  opacity: 1,
+  duration: 1,
+  scrollTrigger: {
+    trigger: ".about-us",
+    start: "2500 top",
+    end: "+=200",
+    scrub: true,
+  },
+});
+tl.to(".info__3", {
+  opacity: 1,
+  duration: 1,
+  pin: true,
+  scrollTrigger: {
+    trigger: ".about-us",
+    start: "2700 top",
+    end: "+=200",
+    scrub: true,
+  },
+}); -->
+
+<!-- // tl.to(slide2, { 
+  //   scrollTrigger: {
+  //     trigger: slide3,
+  //     start: "top",
+  //     end: "+=1080",
+  //     pinSpacing: false,
+  //     pin: slide2,
+  //     // markers: true,
+  //   },
+  // });
+  // tl.to(slide3, {
+  //   scrollTrigger: {
+  //     trigger: slide3,
+  //     start: "top top",
+  //     end: "+=4000",
+  //     pinSpacing: false,
+  //     pin: slide3,
+  //     markers: true,
+  //   },
+  // }); -->

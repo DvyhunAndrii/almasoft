@@ -49,6 +49,7 @@ footer {
   color: #1c2d41;
   font-size: 16px;
   padding: 34px 191px 24px;
+  background-color: #e0e0e0;
   &:after {
     content: "";
     position: absolute;

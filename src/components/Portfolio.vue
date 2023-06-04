@@ -1,100 +1,86 @@
 <template>
   <section id="portfolio" class="portfolio">
-    <transition name="fade">
-      <div v-if="show1" class="left">
-        <div class="left__title">Case Study</div>
-        <div class="left__text">
-          Click a title of project to get to the more detail description
-        </div>
-        <div class="left__btn" @click="consoleView">More about us</div>
+    <div class="left">
+      <div class="left__title">Case Study</div>
+      <div class="left__text">
+        Click a title of project to get to the more detail description
       </div>
-    </transition>
-    <transition name="slide-fade">
-      <ssr-carousel v-if="show1" class="right">
-        <div class="slide right__content">
-          <img src="@/assets/case/prometey.png" alt="prometey img" />
-          <div class="right__text">
-            <div class="right__title">Prometey</div>
-            <div class="right__subtitle">
-              Website for the grain market of Ukraine
-            </div>
+      <div class="left__btn" @click="consoleView">More about us</div>
+    </div>
+    <div class="right">
+      <div class="slide right__content">
+        <img src="@/assets/case/prometey.png" alt="prometey img" />
+        <div class="right__text">
+          <div class="right__title">Prometey</div>
+          <div class="right__subtitle">
+            Website for the grain market of Ukraine
           </div>
         </div>
-        <div class="slide right__content">
-          <img src="@/assets/case/vodokanal.png" alt="vodokanal img" />
-          <div class="right__text">
-            <div class="right__title">Nikolaev water utility</div>
-            <div class="right__subtitle">
-              Website for the City Communal Enterprise
-            </div>
+      </div>
+      <div class="slide right__content">
+        <img src="@/assets/case/vodokanal.png" alt="vodokanal img" />
+        <div class="right__text">
+          <div class="right__title">Nikolaev water utility</div>
+          <div class="right__subtitle">
+            Website for the City Communal Enterprise
           </div>
         </div>
-        <div class="slide right__content">
-          <img src="@/assets/case/redbini.png" alt="redbini img" />
-          <div class="right__text">
-            <div class="right__title">RedBini</div>
-            <div class="right__subtitle">Dating website</div>
+      </div>
+      <div class="slide right__content">
+        <img src="@/assets/case/redbini.png" alt="redbini img" />
+        <div class="right__text">
+          <div class="right__title">RedBini</div>
+          <div class="right__subtitle">Dating website</div>
+        </div>
+      </div>
+      <div class="slide right__content">
+        <img src="@/assets/case/vodokanal_bot.png" alt="vodokanal_bot img" />
+        <div class="right__text">
+          <div class="right__title">Nikolaev water utility</div>
+          <div class="right__subtitle">
+            Chat bot for working with a personal account
           </div>
         </div>
-        <div class="slide right__content">
-          <img src="@/assets/case/vodokanal_bot.png" alt="vodokanal_bot img" />
-          <div class="right__text">
-            <div class="right__title">Nikolaev water utility</div>
-            <div class="right__subtitle">
-              Chat bot for working with a personal account
-            </div>
-          </div>
-        </div>
-      </ssr-carousel>
-    </transition>
+      </div>
+    </div>
   </section>
 </template>
 
 <script>
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 export default {
   name: "CaseStudy",
-  data() {
-    return {
-      show1: false,
-    };
-  },
+  data() {},
   methods: {
     consoleView() {
-      console.log(this.show, "hei");
+      console.log("click");
     },
-    onScroll() {
-      console.log("onScroll");
+    scrollAnimation() {
+      let tl = gsap.timeline();
+      const slide3 = document.querySelector(".slide-3");
+      const slide4 = document.querySelector(".slide-4");
+      tl.to(slide4, {
+        scrollTrigger: {
+          trigger: slide3,
+          start: "bottom bottom",
+          end: "+=2000",
+          pinSpacing: false,
+          pin: slide4,
+          markers: true,
+        },
+      });
     },
   },
-  mounted() {
-    window.addEventListener("scroll", this.onScroll);
-    setTimeout(() => {
-      this.show1 = true;
-    }, "500");
+  mounted: function () {
+    this.scrollAnimation();
   },
 };
 </script>
 
 <style scoped lang="scss">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 2s;
-}
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-.slide-fade-enter-active {
-  transition: all 1s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-  /* .slide-fade-leave-active до версии 2.1.8 */ {
-  transform: translateX(600px);
-  opacity: 0;
-}
 .portfolio {
   display: flex;
   height: 1080px;
@@ -103,10 +89,12 @@ export default {
   background-repeat: no-repeat;
   padding-top: 99px;
   position: relative;
+  overflow: hidden;
+  // top: -1450px;
   &:after {
     content: "";
     position: absolute;
-    top: 79%;
+    top: 67%;
     left: 0;
     background-image: url("@/assets/AlmaSoft.png");
     background-repeat: no-repeat;
