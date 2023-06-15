@@ -69,7 +69,7 @@ export default {
           end: "+=2000",
           pinSpacing: false,
           pin: slide4,
-          markers: true,
+          // markers: true,
         },
       });
     },

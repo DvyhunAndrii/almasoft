@@ -10,10 +10,14 @@
           </a>
         </div>
         <div class="main-nav__links">
-          <a href="#about-us">About us</a>
-          <a href="#our-team">Our team</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#contact-us">Contact us</a>
+          <a @click="activeLink" class="about-us" href="#about-us">About us</a>
+          <a @click="activeLink" class="our-team" href="#our-team">Our team</a>
+          <a @click="activeLink" class="portfolio" href="#portfolio"
+            >Portfolio</a
+          >
+          <a @click="activeLink" class="contact-us" href="#contact-us"
+            >Contact us</a
+          >
         </div>
       </div>
     </nav>
@@ -46,7 +50,9 @@ import Portfolio from "./components/Portfolio.vue";
 import ContactUs from "./components/ContactUs.vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
+import { DrawSVGPlugin } from "@/assets/js/DrawSVGPlugin3.min.js";
+import { MotionPathPlugin } from "@/assets/js/MotionPathPlugin.min.js";
+gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
 
 export default {
   components: {
@@ -59,9 +65,30 @@ export default {
   data() {
     return {
       show1: false,
+      active: false,
+      aboutUs: false,
+      ourTeam: false,
+      portfolio: false,
+      contactUs: false,
     };
   },
   methods: {
+    activeLink(e) {
+      const links = document.querySelectorAll(".main-nav__links a");
+      // console.log(links);
+      console.log(e.target);
+      links.forEach(function (a) {
+        console.log(a);
+        a.classList.remove("active");
+        e.target.classList.add("active");
+      });
+      // if (event.target.classlist.contains("our-team")) {
+      //   console.log("true");
+      // }
+      // links.forEach((event) => {
+      //   console.log(target);
+      // });
+    },
     scrollAnimation() {
       // const slide1 = document.querySelector(".slide-1");
       // const home = document.querySelector(".home");
@@ -110,8 +137,9 @@ export default {
         scrollTrigger: {
           trigger: ".main-nav",
           toggleClass: "white",
-          start: "1080px",
-          end: "3700px",
+          start: "10px",
+          end: "1680px",
+          // markers: true,
         },
       });
       tl.to(".main-nav", {
@@ -123,6 +151,18 @@ export default {
           end: "7900px",
         },
       });
+      tl.fromTo(
+        ".main-nav__links a",
+        { y: -50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, stagger: 0.1, ease: "SlowMo" },
+        0.7
+      );
+      tl.fromTo(
+        ".main-nav__logo",
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 1 },
+        0.5
+      );
       // });
     },
   },
@@ -322,6 +362,22 @@ nav .container {
     font-size: 24px;
     line-height: 29px;
     transition: 1s;
+    position: relative;
+  }
+  a.active::before {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 109px;
+    background-color: #3777f3;
+    bottom: -36px;
+    transition: width 0.35s;
+  }
+  a.active.portfolio::before {
+    width: 102px;
+  }
+  a.active.contact-us::before {
+    width: 129px;
   }
   .main-nav__links {
     max-width: 839px;
@@ -342,15 +398,15 @@ nav .container {
   top: -1080px;
 }
 .slide-3 {
-  top: 500px;
+  top: -780px;
   z-index: 20;
 }
 .slide-4 {
-  top: 1550px;
+  // top: -2050px;
   z-index: 10;
 }
 .slide-5 {
-  top: 500px;
+  top: 1500px;
   z-index: 20;
 }
 
