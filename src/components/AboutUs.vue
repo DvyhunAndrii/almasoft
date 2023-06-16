@@ -725,12 +725,9 @@
 
 <script>
 import gsap from "gsap";
-// import "@/assets/js/DrawSVGPlugin3.min.js";
-// import "@/assets/js/MotionPathPlugin.min.js";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "@/assets/js/DrawSVGPlugin3.min.js";
 import { MotionPathPlugin } from "@/assets/js/MotionPathPlugin.min.js";
-// gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
 
 export default {
@@ -749,16 +746,7 @@ export default {
       // const home = document.querySelector(".home");
       const slide1 = document.querySelector(".slide-1");
       const slide2 = document.querySelector(".slide-2");
-      // gsap.from(".about-us__alma-soft", {
-      //   opacity: 0,
-      //   scrollTrigger: {
-      //     trigger: ".slide-2",
-      //     scrub: true,
-      //     start: "-1080px",
-      //     pin: ".about-us__alma-soft",
-      //     pinSpacing: false,
-      //   },
-      // });
+
       let tl = gsap.timeline();
       tl.to(slide2, {
         scrollTrigger: {
@@ -782,23 +770,6 @@ export default {
           pinSpacing: false,
         },
       });
-      // tl.fromTo(
-      //   slide1,
-      //   { y: 0, scrub: 4, duration: 4 },
-      //   {
-      //     y: -1080,
-      //     duration: 4,
-      //     scrub: 4,
-      //     scrollTrigger: {
-      //       trigger: slide1,
-      //       start: "top top",
-      //       end: "+=100",
-      //       scrub: 4,
-      //       duration: 4,
-      //       pinSpacing: false,
-      //     },
-      //   }
-      // );
       gsap.fromTo(
         ".about-us__left",
         { opacity: 0, y: 500 },
@@ -813,14 +784,14 @@ export default {
             // end: "+=3%",
             // scrub: true,
             // delay: 2,
-            // markers: true,
+            markers: true,
           },
         },
         2
       ),
         gsap.fromTo(
           ".about-us__left",
-          { opacity: 1, y: 0, duration: 2 },
+          { y: 0, duration: 2 },
           {
             opacity: 0,
             y: -250,
@@ -836,7 +807,7 @@ export default {
         ),
         tl.to(".about-us__alma-soft", {
           opacity: 0.6,
-          y: 2000,
+          y: 1500,
           scrollTrigger: {
             trigger: slide1,
             start: "100",
@@ -844,7 +815,7 @@ export default {
             // trigger: ".info",
             // start: "top center",
             // end: "+=1600",
-            scrub: 0.1,
+            scrub: 0.00001,
           },
         });
       tl.to(".info", {
@@ -853,7 +824,7 @@ export default {
         scrollTrigger: {
           trigger: slide1,
           start: "100",
-          end: "+=700",
+          end: "+=1000",
           scrub: 0.1,
           // pinSpacing: false,
           pin: slide2,
@@ -861,13 +832,13 @@ export default {
         },
       });
       tl.to(".info", {
-        y: 1300,
+        y: 1000,
         scrollTrigger: {
           // trigger: ".about-us__left",
           trigger: slide1,
-          start: "800 top",
+          start: "1100 top",
           end: "+=1700",
-          scrub: 0.1,
+          scrub: 0.000001,
           // markers: true,
         },
       });
@@ -1109,11 +1080,11 @@ export default {
     z-index: 0;
   }
   .about-us-left {
-    // opacity: 0;
-    margin: 400px 0 0 191px;
+    opacity: 0;
+    margin: 0 0 0 191px;
     position: relative;
     z-index: 1;
-    // top: 500px;
+    top: 400px;
 
     .about-us-left__container {
       color: #ffffff;
@@ -1164,7 +1135,7 @@ export default {
     color: #ffffff;
     opacity: 1;
     position: relative;
-    top: -25%;
+    top: -5%;
     // transform: translateY(-200px) !important;
     // left: 12%;
     margin-left: 191px;
