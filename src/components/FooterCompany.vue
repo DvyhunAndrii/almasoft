@@ -13,25 +13,37 @@
         </div>
       </div>
       <div class="footer-up__social-networks">
-        <div class="footer-up__social-network">
-          <img src="@/assets/social-network/twitter.svg" alt=" img" />
+        <div class="footer-up__social-networks-block">
+          <a href="https://twitter.com/" target="_blank">
+            <div class="footer-up__social-network">
+              <img src="@/assets/social-network/twitter.svg" alt=" img" />
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank">
+            <div class="footer-up__social-network">
+              <img src="@/assets/social-network/in.svg" alt=" img" />
+            </div>
+          </a>
+          <a href="https://www.facebook.com/" target="_blank">
+            <div class="footer-up__social-network">
+              <img src="@/assets/social-network/facebook.svg" alt=" img" />
+            </div>
+          </a>
+          <a href="https://www.instagram.com" target="_blank">
+            <div class="footer-up__social-network">
+              <img src="@/assets/social-network/instagram.svg" alt=" img" />
+            </div>
+          </a>
         </div>
-        <div class="footer-up__social-network">
-          <img src="@/assets/social-network/in.svg" alt=" img" />
-        </div>
-        <div class="footer-up__social-network">
-          <img src="@/assets/social-network/facebook.svg" alt=" img" />
-        </div>
-        <div class="footer-up__social-network">
-          <img src="@/assets/social-network/instagram.svg" alt=" img" />
-        </div>
+        <div class="footer-down"><span>© Copyright Alma-Soft 2023</span></div>
       </div>
       <div class="footer-up__find-us">
         <div class="footer-up__title">Contact us</div>
-        <a class="footer-up__mail">Info@alma-soft.com</a>
+        <a href="mailto:info@alma-soft.com" class="footer-up__mail"
+          >Info@alma-soft.com</a
+        >
       </div>
     </div>
-    <div class="footer-down">© Copyright Alma-Soft 2023</div>
   </footer>
 </template>
 
@@ -44,7 +56,8 @@ export default {
 <style scoped lang="scss">
 footer {
   width: 100%;
-  height: 169px;
+  // height: 169px;
+  height: 100vh;
   position: relative;
   color: #1c2d41;
   font-size: 16px;
@@ -87,29 +100,62 @@ footer {
   .footer-up__social-networks {
     display: flex;
     align-items: center;
-    margin-left: -14%;
-    .footer-up__social-network {
-      width: 47px;
-      height: 47px;
-      background-color: #ffffff;
-      border-radius: 50%;
+    margin-left: -2vw;
+    flex-direction: column;
+    position: relative;
+    top: 25px;
+    .footer-up__social-networks-block {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 20px;
+      margin-bottom: 30px;
+      .footer-up__social-network {
+        position: relative;
+        z-index: 10;
+        cursor: pointer;
+        // transition: 0.7s;
+        width: 47px;
+        height: 47px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        border-radius: 50%;
+      }
+      a {
+        width: 52px;
+        height: 52px;
+      }
+      a:not(:last-child) {
+        margin-right: 20px;
+      }
+      .footer-up__social-network:hover {
+        width: 51px;
+        height: 51px;
+        // transition: 0.1s;
+      }
     }
   }
   .footer-up__mail {
     color: #1378d5;
     font-size: 16px;
     line-height: 150%;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    transition: 0.5s;
+  }
+  .footer-up__mail:hover {
+    color: #004ca9;
+    transition: 0.5s;
   }
   .footer-down {
     font-family: "Source Sans Pro";
     font-style: normal;
     line-height: 20px;
-    text-align: center;
+    // text-align: center;
+    display: flex;
+    justify-content: center;
     opacity: 1;
+    width: 100%;
   }
 }
 </style>
