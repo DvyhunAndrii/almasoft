@@ -453,4 +453,39 @@ export default {
     }
   }
 }
+@media screen and (max-width: 767px) {
+  .portfolio {
+    flex-direction: column;
+    .left {
+      // margin-left: 9.948vw;
+      margin-top: 50px;
+      position: relative;
+      top: 0;
+      height: 100%;
+      .left__title {
+        font-size: 40px;
+        width: auto;
+        margin-bottom: 10px;
+      }
+      .left__text {
+        font-weight: 300;
+        font-size: 14px;
+        margin-bottom: 20px;
+        width: auto;
+      }
+      .left__btn {
+        font-size: 12px;
+        padding: 16px 30px;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
+      }
+    }
+    .right {
+      position: relative;
+      margin-top: 0;
+    }
+  }
+}
 </style>

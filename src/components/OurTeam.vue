@@ -246,99 +246,112 @@ export default {
           },
         },
       });
-
-      gsap.to(".our-team-left", {
-        opacity: 1,
-        duration: 0.7,
-        delay: 1,
-        scrollTrigger: {
-          trigger: slide3,
-          start: "top bottom",
-          toggleActions: "play none none reverse",
-        },
-      });
-      gsap.from(".our-team-right", {
-        y: slide3Heigth * 0.5,
-        opacity: 0,
-        duration: 0.7,
-        delay: 1,
-        scrollTrigger: {
-          trigger: slide3,
-          start: "top bottom",
-          toggleActions: "play none none reverse",
-        },
-      });
-      tl.to(".our-team-left__block-2", {
-        y: "-70%",
-        scrollTrigger: {
-          trigger: ".our-team-right",
-          start: "-50% 80%",
-          end: "top 70%",
-          scrub: 2,
-          onEnter: function () {
-            block2.classList.add("active");
-            block1.classList.remove("active");
-          },
-        },
-      }).to(".our-team-left__block-3", {
-        y: "-90%",
-        opacity: 1,
-        scrollTrigger: {
-          trigger: ".our-team-right",
-          start: "-40% 10%",
-          end: "top 0",
-          scrub: 2,
-          onEnter: function () {
-            block3.classList.add("active");
-            block1.classList.remove("active");
-            block2.classList.remove("active");
-          },
-        },
-      });
-
-      tl.to(".content-1", {
-        y: "-80%",
-        scrollTrigger: {
-          trigger: ".our-team-right",
-          start: "-40% 80%",
-          end: "top 70%",
-          scrub: 2,
-        },
-      })
-        .to(".content-2", {
-          y: "-80%",
+      // if (window.innerWidth < 768) {
+      //   gsap.to(slide3, {
+      //     y: -slide3Heigth,
+      //     duration: 1,
+      //     scrollTrigger: {
+      //       trigger: slide3,
+      //       start: "top bottom",
+      //       end: "bottom center",
+      //       pin: true,
+      //       pinSpacing: false,
+      //     },
+      //   });
+      // }
+      if (window.innerWidth > 768) {
+        gsap.to(".our-team-left", {
           opacity: 1,
+          duration: 0.7,
+          delay: 1,
+          scrollTrigger: {
+            trigger: slide3,
+            start: "top bottom",
+            toggleActions: "play none none reverse",
+          },
+        });
+        gsap.from(".our-team-right", {
+          y: slide3Heigth * 0.5,
+          opacity: 0,
+          duration: 0.7,
+          delay: 1,
+          scrollTrigger: {
+            trigger: slide3,
+            start: "top bottom",
+            toggleActions: "play none none reverse",
+          },
+        });
+        tl.to(".our-team-left__block-2", {
+          y: "-70%",
           scrollTrigger: {
             trigger: ".our-team-right",
             start: "-50% 80%",
             end: "top 70%",
             scrub: 2,
+            onEnter: function () {
+              block2.classList.add("active");
+              block1.classList.remove("active");
+            },
           },
-        })
-        .to(".content-3", {
-          y: "-80%",
+        }).to(".our-team-left__block-3", {
+          y: "-90%",
           opacity: 1,
           scrollTrigger: {
             trigger: ".our-team-right",
-            start: "-50% 80%",
-            end: "top 70%",
-            scrub: 2,
-          },
-        })
-        .to(".content-4", {
-          y: "-80%",
-          opacity: 1,
-          scrollTrigger: {
-            trigger: ".our-team-right",
-            start: "-50% 10%",
+            start: "-40% 10%",
             end: "top 0",
             scrub: 2,
             onEnter: function () {
-              flowerIconAnimation();
+              block3.classList.add("active");
+              block1.classList.remove("active");
+              block2.classList.remove("active");
             },
           },
         });
 
+        tl.to(".content-1", {
+          y: "-80%",
+          scrollTrigger: {
+            trigger: ".our-team-right",
+            start: "-40% 80%",
+            end: "top 70%",
+            scrub: 2,
+          },
+        })
+          .to(".content-2", {
+            y: "-80%",
+            opacity: 1,
+            scrollTrigger: {
+              trigger: ".our-team-right",
+              start: "-50% 80%",
+              end: "top 70%",
+              scrub: 2,
+            },
+          })
+          .to(".content-3", {
+            y: "-80%",
+            opacity: 1,
+            scrollTrigger: {
+              trigger: ".our-team-right",
+              start: "-50% 80%",
+              end: "top 70%",
+              scrub: 2,
+            },
+          })
+          .to(".content-4", {
+            y: "-80%",
+            opacity: 1,
+            scrollTrigger: {
+              trigger: ".our-team-right",
+              start: "-50% 10%",
+              end: "top 0",
+              scrub: 2,
+              onEnter: function () {
+                flowerIconAnimation();
+              },
+            },
+          });
+      }
       function flowerIconAnimation() {
         const colours = ["#ca4234", "#cec6be", "#004CA9"];
 
@@ -599,6 +612,83 @@ export default {
   .our-team-left .our-team-left__block-3 .our-team-left__title {
     opacity: 1;
     transition: 1;
+  }
+}
+@media screen and (max-width: 767px) {
+  .our-team {
+    padding-top: 5vh;
+    .container {
+      flex-direction: column;
+      .our-team-left {
+        order: 2;
+        opacity: 1;
+        margin-top: 10vh;
+        .our-team-left__block-1 {
+          margin-bottom: 20px;
+        }
+        .our-team-left__block-2 {
+          margin-bottom: 20px;
+        }
+        .our-team-left__block-3 {
+          margin-top: 0;
+        }
+        .our-team-left__description-2,
+        .our-team-left__description-3 {
+          display: none;
+        }
+        .our-team-left__title {
+          width: auto;
+          font-size: 40px;
+          opacity: 1;
+        }
+        .our-team-left__subtitle {
+          font-size: 18px;
+          font-weight: 26px;
+        }
+        .our-team-left__text {
+          font-size: 14px;
+          font-weight: 20px;
+          width: 100%;
+        }
+        .our-team-left__btn {
+          padding: 16px 30px;
+          font-size: 12px;
+        }
+      }
+      .our-team-right {
+        max-width: 115%;
+        width: 115%;
+        order: 1;
+        overflow: visible;
+        position: relative;
+        left: -5vw;
+        max-height: 40vh;
+        .our-team-right__content {
+          left: 0;
+          max-height: 40vh;
+          img {
+            width: 100%;
+            max-height: 40vh;
+          }
+        }
+        .our-team-right__content:nth-child(1) {
+          width: auto;
+          height: auto;
+          position: relative;
+          // left: 7.813vw;
+          z-index: 0;
+        }
+        .our-team-right__content:nth-child(2) {
+          display: none;
+        }
+        .our-team-right__content:nth-child(3) {
+          display: none;
+        }
+        .our-team-right__content:nth-child(4) {
+          display: none;
+        }
+      }
+    }
   }
 }
 </style>

@@ -894,6 +894,16 @@ export default {
       });
       if (window.innerWidth < 768) {
         console.log("innerWidth < 768");
+        gsap.to(".info", {
+          opacity: 1,
+          duration: 1,
+          delay: 2,
+          scrollTrigger: {
+            trigger: slide1,
+            start: "bottom bottom",
+            toggleActions: "play none none reverse",
+          },
+        });
       }
       if (window.innerWidth > 768) {
         console.log("innerWidth > 768");
@@ -1399,6 +1409,7 @@ $maxWidth: 1920;
     .info {
       top: 15vh;
       margin-left: 0;
+      opacity: 0;
       .info__block {
         opacity: 1;
         flex-direction: column;

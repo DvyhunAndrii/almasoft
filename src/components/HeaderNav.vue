@@ -287,6 +287,15 @@ nav.white .header__burger:before {
 nav.white .header__burger:after {
   background-color: #ffffff;
 }
+nav.white .header__burger.active span {
+  background-color: #004ca9;
+}
+nav.white .header__burger.active:before {
+  background-color: #004ca9;
+}
+nav.white .header__burger.active:after {
+  background-color: #004ca9;
+}
 nav .container {
   display: flex;
   align-items: center;

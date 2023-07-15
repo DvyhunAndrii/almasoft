@@ -189,6 +189,7 @@ legend {
     width: 89.33vw;
   }
 }
+
 @font-face {
   font-family: "Inter";
   font-weight: 300;
