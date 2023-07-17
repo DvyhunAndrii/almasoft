@@ -7,17 +7,26 @@
         <main-view />
       </div>
       <div class="slide slide-2">
+        <div class="overlay"></div>
         <about-us />
       </div>
       <div class="slide slide-3">
-        <our-team />
+        <div class="trigger-top"></div>
+        <div class="from-bottom">
+          <our-team />
+        </div>
+        <div class="trigger-bottom"></div>
       </div>
-      <div class="slide slide-4">
-        <portfolio />
+      <!-- <div class="slide slide-4">
+        <div class="inner">
+          <portfolio />
+        </div>
       </div>
       <div class="slide slide-5">
-        <contact-us />
-      </div>
+        <div class="inner">
+          <contact-us />
+        </div>
+      </div> -->
     </main>
 
     <!-- <router-view /> -->
@@ -28,17 +37,17 @@ import HeaderNav from "./components/HeaderNav.vue";
 import MainView from "@/components/MainView.vue";
 import AboutUs from "./components/AboutUs.vue";
 import OurTeam from "./components/OurTeam.vue";
-import Portfolio from "./components/Portfolio.vue";
-import ContactUs from "./components/ContactUs.vue";
+// import Portfolio from "./components/Portfolio.vue";
+// import ContactUs from "./components/ContactUs.vue";
 
 export default {
   components: {
     HeaderNav,
     MainView,
     AboutUs,
-    Portfolio,
     OurTeam,
-    ContactUs,
+    // Portfolio,
+    // ContactUs,
   },
   data() {
     return {
@@ -168,11 +177,17 @@ legend {
   position: relative;
 }
 .slide-1 {
-  z-index: 20;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  background: lightblue;
+  z-index: 5;
 }
 .slide-2 {
-  z-index: 10;
-  top: -100vh;
+  z-index: 1;
+  height: 100vh;
 }
 .slide-3 {
   z-index: 20;
@@ -246,5 +261,173 @@ legend {
   unicode-range: U+000-5FF;
   src: local("Source Sans Pro"),
     url("@/fonts/SourceSansPro-Regular.ttf") format("truetype");
+}
+.slides {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.slides .slide {
+  position: relative;
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 40px;
+}
+main .slide.slide-1 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  // background: lightblue;
+  z-index: 5;
+}
+main .slide.slide-2 {
+  // background-color: lightgreen;
+  z-index: 1;
+  height: 100vh;
+  // color: #fff;
+}
+main .slide.slide-2 .overlay {
+  height: 100vh;
+  background-image: url("@/assets/laptop.jpg");
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+main .slide.slide-2 > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+main .slide.slide-3 {
+  position: relative;
+  height: 100vh;
+  z-index: 7;
+  margin-top: -200vh;
+}
+main .slide.slide-3 .trigger-top {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+main .slide.slide-3 .trigger-bottom {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+}
+main .slide.slide-3 .from-bottom {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+main .slide.slide-3 .to-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  // background: tomato;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  // display: flex;
+  display: block;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.slides .slide.slide-3 .test {
+  width: 20px;
+  height: 20px;
+  background: #000;
+}
+main .slide.slide-4 {
+  position: relative;
+  height: 100vh;
+  z-index: 5;
+  background: yellow;
+  margin-top: -100vh;
+}
+main .slide.slide-5 {
+  position: relative;
+  height: 100vh;
+  z-index: 5;
+  margin-top: -100vh;
+}
+main .slide.slide-5 .inner {
+  background: purple;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 </style>

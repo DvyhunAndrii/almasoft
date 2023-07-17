@@ -1,7 +1,7 @@
 <template>
   <section id="about-us" class="about-us">
     <div class="container">
-      <div class="about-us__left about-us-left">
+      <div class="top about-us__left about-us-left">
         <div class="about-us__left about-us-left__container">
           <div class="about-us-left__title">Alma-Soft</div>
           <div class="about-us-left__subtitle">
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <ul class="info">
+      <ul class="bottom info">
         <li class="info__block info__1">
           <div class="info__item info__item-1">
             <div class="info__icon info__icon-1">
@@ -732,7 +732,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { DrawSVGPlugin } from "@/assets/js/DrawSVGPlugin3.min.js";
 import { MotionPathPlugin } from "@/assets/js/MotionPathPlugin.min.js";
-import { Power4 } from "gsap";
+// import { Power2 } from "gsap";
 import { mapMutations } from "vuex";
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
@@ -743,15 +743,19 @@ export default {
     return {
       show1: false,
       show2: true,
+      st: false,
     };
   },
   computed: {
     visShow() {
       return this.$store.getters.visShow;
     },
+    visWhite() {
+      return this.$store.getters.visWhite;
+    },
   },
   methods: {
-    ...mapMutations(["changeShow"]),
+    ...mapMutations(["changeShow, changeWhite"]),
     consoleView() {
       console.log("click");
     },
@@ -762,16 +766,218 @@ export default {
         window.scroll(0, 50);
       });
     },
-    scrollAnimation() {
-      const mainNav = document.querySelector(".main-nav");
-      const slide1 = document.querySelector(".slide-1");
-      const slide2 = document.querySelector(".slide-2");
-      const slide1Heigth = slide1.clientHeight;
-      const slide2Heigth = slide2.clientHeight;
-      console.log(slide2Heigth);
+    // scrollAnimation() {
+    //   const mainNav = document.querySelector(".main-nav");
+    //   const slide1 = document.querySelector(".slide-1");
+    //   const slide2 = document.querySelector(".slide-2");
+    //   const slide1Heigth = slide1.clientHeight;
+    //   const slide2Heigth = slide2.clientHeight;
+    //   console.log(slide2Heigth);
 
-      const aboutUsLink = document.querySelector("a.about-us");
+    //   const aboutUsLink = document.querySelector("a.about-us");
+    //   let tl = gsap.timeline();
+
+    //   // const mySplitText = new SplitText(".about-us-left__title", {
+    //   //   type: "chars",
+    //   // });
+    //   // const chars = mySplitText.chars;
+    //   // gsap.to(slide2, {
+    //   //   y: -slide1Heigth,
+    //   //   scrollTrigger: {
+    //   //     trigger: slide1,
+    //   //     start: "bottom bottom",
+    //   //     toggleActions: "play none none reverse",
+    //   //   },
+    //   // });
+    //   gsap.to(slide1, {
+    //     scrollTrigger: {
+    //       trigger: slide1,
+    //       start: "bottom bottom",
+    //       end: "+=700",
+    //       pin: slide2,
+    //     },
+    //   });
+    //   gsap.to(slide1, {
+    //     y: -slide1Heigth,
+    //     duration: 1.5,
+    //     ease: Power4.easeOut,
+    //     scrollTrigger: {
+    //       trigger: slide1,
+    //       start: "bottom bottom",
+    //       toggleActions: "play none none reverse",
+    //       onEnter: function () {
+    //         mainNav.classList.add("white");
+    //         activeLink();
+    //         // this.changeShow();
+    //         // console.log(this.visShow);
+    //       },
+    //       onEnterBack: function () {
+    //         mainNav.classList.add("white");
+    //         activeLink();
+    //       },
+    //       onLeaveBack: function () {
+    //         setTimeout(() => {
+    //           removeActiveLink();
+    //           mainNav.classList.remove("white");
+    //         }, 1000);
+    //       },
+    //     },
+    //   });
+    //   // gsap.to("#about-us", {
+    //   //   scrollTrigger: {
+    //   //     trigger: slide1,
+    //   //     start: "bottom bottom",
+    //   //     // end: "+=2000",
+    //   //     // scrub: 18,
+    //   //   },
+    //   // });
+    //   gsap.fromTo(
+    //     ".about-us__left",
+    //     { opacity: 0, y: 500 },
+    //     {
+    //       opacity: 1,
+    //       y: 0,
+    //       duration: 1,
+    //       delay: 1,
+    //       scrollTrigger: {
+    //         trigger: slide1,
+    //         start: "bottom bottom",
+    //         toggleActions: "play none none reverse",
+    //       },
+    //     }
+    //   );
+    //   gsap.fromTo(
+    //     ".about-us__left",
+    //     { opacity: 1 },
+    //     {
+    //       opacity: 0,
+    //       // y: -200,
+    //       duration: 1.5,
+    //       scrollTrigger: {
+    //         trigger: slide1,
+    //         start: "80%",
+    //         // end: "+=200",
+    //         scrub: 2,
+    //         // markers: true,
+    //       },
+    //     }
+    //   );
+    //   gsap.to(".about-us__alma-soft", {
+    //     opacity: 0.6,
+    //     duration: 3,
+    //     scrollTrigger: {
+    //       trigger: slide1,
+    //       start: "bottom bottom",
+    //     },
+    //   });
+    //   gsap.to(".about-us__alma-soft", {
+    //     y: 900,
+    //     duration: 3,
+    //     scrollTrigger: {
+    //       trigger: slide1,
+    //       start: "800",
+    //       scrub: true,
+    //       // end: "+=1200",
+    //       // pin: ".about-us__alma-soft",
+    //       // pinSpacing: false,
+    //       // markers: true,
+    //     },
+    //   });
+    //   if (window.innerWidth < 768) {
+    //     console.log("innerWidth < 768");
+    //     gsap.to(".info", {
+    //       opacity: 1,
+    //       duration: 1,
+    //       delay: 2,
+    //       scrollTrigger: {
+    //         trigger: slide1,
+    //         start: "bottom bottom",
+    //         toggleActions: "play none none reverse",
+    //       },
+    //     });
+    //   }
+    //   if (window.innerWidth > 768) {
+    //     console.log("innerWidth > 768");
+    //     tl.to(".info", {
+    //       y: "90%",
+    //       // opacity: 0,
+    //       scrollTrigger: {
+    //         trigger: slide1,
+    //         start: "95% top",
+    //         end: "+=950",
+    //         scrub: 0.001,
+    //       },
+    //     })
+    //       .fromTo(
+    //         ".info__1",
+    //         { opacity: 0 },
+    //         {
+    //           opacity: 1,
+    //           duration: 1,
+    //           scale: 1,
+    //           // ease: "SlowMo",
+    //           scrollTrigger: {
+    //             trigger: slide1,
+    //             start: "85% top",
+    //             end: "+=200",
+    //             toggleActions: "play none none reverse",
+    //             onEnter: this.mouseOverBlock1,
+    //             scrub: 2,
+    //           },
+    //         }
+    //       )
+    //       .fromTo(
+    //         ".info__2",
+    //         { opacity: 0 },
+    //         {
+    //           opacity: 1,
+    //           duration: 1,
+    //           scale: 1,
+    //           // ease: "SlowMo",
+    //           scrollTrigger: {
+    //             trigger: slide1,
+    //             start: "105% top",
+    //             end: "+=200",
+    //             toggleActions: "play none none reverse",
+    //             onEnter: this.mouseOverBlock1,
+    //             scrub: 2,
+    //           },
+    //         }
+    //       )
+    //       .fromTo(
+    //         ".info__3",
+    //         { opacity: 0 },
+    //         {
+    //           opacity: 1,
+    //           duration: 1,
+    //           scale: 1,
+    //           // ease: "SlowMo",
+    //           scrollTrigger: {
+    //             trigger: slide1,
+    //             start: "125% top",
+    //             end: "+=200",
+    //             toggleActions: "play none none reverse",
+    //             onEnter: this.mouseOverBlock1,
+    //             scrub: 2,
+    //           },
+    //         }
+    //       );
+    //   }
+
+    //   gsap.to(slide2, {
+    //     scrollTrigger: {
+    //       trigger: slide2,
+    //       start: "bottom bottom",
+    //       end: "+=2150",
+    //       pin: true,
+    //       pinSpacing: false,
+    //     },
+    //   });
+    // },
+    scrollAnimation() {
       const allLinks = document.querySelectorAll(".main-nav__links a");
+      const mainNav = document.querySelector(".main-nav");
+      const aboutUsLink = document.querySelector("a.about-us");
       function activeLink() {
         allLinks.forEach((el) => {
           el.classList.remove("active");
@@ -783,205 +989,90 @@ export default {
           el.classList.remove("active");
         });
       }
-
-      let tl = gsap.timeline();
-
-      // const mySplitText = new SplitText(".about-us-left__title", {
-      //   type: "chars",
-      // });
-      // const chars = mySplitText.chars;
-      // gsap.to(slide2, {
-      //   y: -slide1Heigth,
-      //   scrollTrigger: {
-      //     trigger: slide1,
-      //     start: "bottom bottom",
-      //     toggleActions: "play none none reverse",
-      //   },
-      // });
-      gsap.to(slide1, {
-        scrollTrigger: {
-          trigger: slide1,
-          start: "bottom bottom",
-          end: "+=700",
-          pin: slide2,
-        },
-      });
-      gsap.to(slide1, {
-        y: -slide1Heigth,
-        duration: 1.5,
-        ease: Power4.easeOut,
-        scrollTrigger: {
-          trigger: slide1,
-          start: "bottom bottom",
-          toggleActions: "play none none reverse",
-          onEnter: function () {
-            mainNav.classList.add("white");
-            activeLink();
-            // this.changeShow();
-            // console.log(this.visShow);
-          },
-          onEnterBack: function () {
-            mainNav.classList.add("white");
-            activeLink();
-          },
-          onLeaveBack: function () {
-            setTimeout(() => {
-              removeActiveLink();
-              mainNav.classList.remove("white");
-            }, 1000);
-          },
-        },
-      });
-      // gsap.to("#about-us", {
-      //   scrollTrigger: {
-      //     trigger: slide1,
-      //     start: "bottom bottom",
-      //     // end: "+=2000",
-      //     // scrub: 18,
-      //   },
-      // });
-      gsap.fromTo(
-        ".about-us__left",
-        { opacity: 0, y: 500 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          delay: 1,
+      // function preventScroll() {
+      //   let st = true;
+      //   setTimeout(() => {
+      //     st = false;
+      //   }, 1000);
+      // }
+      gsap
+        .timeline({
+          defaults: { ease: "power2.out" },
           scrollTrigger: {
-            trigger: slide1,
-            start: "bottom bottom",
+            trigger: ".slide-1",
+            start: () => `top+=0.1% top`,
+            end: () => `bottom+=0.1% top`,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
             toggleActions: "play none none reverse",
-          },
-        }
-      );
-      gsap.fromTo(
-        ".about-us__left",
-        { opacity: 1 },
-        {
-          opacity: 0,
-          // y: -200,
-          duration: 1.5,
-          scrollTrigger: {
-            trigger: slide1,
-            start: "80%",
-            // end: "+=200",
-            scrub: 2,
-            // markers: true,
-          },
-        }
-      );
-      gsap.to(".about-us__alma-soft", {
-        opacity: 0.6,
-        duration: 3,
-        scrollTrigger: {
-          trigger: slide1,
-          start: "bottom bottom",
-        },
-      });
-      gsap.to(".about-us__alma-soft", {
-        y: 900,
-        duration: 3,
-        scrollTrigger: {
-          trigger: slide1,
-          start: "800",
-          scrub: true,
-          // end: "+=1200",
-          // pin: ".about-us__alma-soft",
-          // pinSpacing: false,
-          // markers: true,
-        },
-      });
-      if (window.innerWidth < 768) {
-        console.log("innerWidth < 768");
-        gsap.to(".info", {
-          opacity: 1,
-          duration: 1,
-          delay: 2,
-          scrollTrigger: {
-            trigger: slide1,
-            start: "bottom bottom",
-            toggleActions: "play none none reverse",
-          },
-        });
-      }
-      if (window.innerWidth > 768) {
-        console.log("innerWidth > 768");
-        tl.to(".info", {
-          y: "90%",
-          // opacity: 0,
-          scrollTrigger: {
-            trigger: slide1,
-            start: "95% top",
-            end: "+=950",
-            scrub: 0.001,
+            // onEnter: () => {
+            //   this.preventScroll();
+            // },
+            // onLeaveBack: function () {
+            //   this.preventScroll();
+            // },
+            onEnter: function () {
+              mainNav.classList.add("white");
+              activeLink();
+              // preventScroll();
+              // this.changeShow();
+              // console.log(this.visShow);
+            },
+            onEnterBack: function () {
+              mainNav.classList.add("white");
+              activeLink();
+              // preventScroll();
+            },
+            onLeaveBack: function () {
+              setTimeout(() => {
+                removeActiveLink();
+                mainNav.classList.remove("white");
+              }, 1000);
+            },
           },
         })
-          .fromTo(
-            ".info__1",
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 1,
-              scale: 1,
-              // ease: "SlowMo",
-              scrollTrigger: {
-                trigger: slide1,
-                start: "85% top",
-                end: "+=200",
-                toggleActions: "play none none reverse",
-                onEnter: this.mouseOverBlock1,
-                scrub: 2,
-              },
-            }
-          )
-          .fromTo(
-            ".info__2",
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 1,
-              scale: 1,
-              // ease: "SlowMo",
-              scrollTrigger: {
-                trigger: slide1,
-                start: "105% top",
-                end: "+=200",
-                toggleActions: "play none none reverse",
-                onEnter: this.mouseOverBlock1,
-                scrub: 2,
-              },
-            }
-          )
-          .fromTo(
-            ".info__3",
-            { opacity: 0 },
-            {
-              opacity: 1,
-              duration: 1,
-              scale: 1,
-              // ease: "SlowMo",
-              scrollTrigger: {
-                trigger: slide1,
-                start: "125% top",
-                end: "+=200",
-                toggleActions: "play none none reverse",
-                onEnter: this.mouseOverBlock1,
-                scrub: 2,
-              },
-            }
-          );
-      }
-
-      gsap.to(slide2, {
-        scrollTrigger: {
-          trigger: slide2,
-          start: "bottom bottom",
-          end: "+=2150",
-          pin: true,
-          pinSpacing: false,
-        },
-      });
+        .to(".slide-1", { yPercent: -100, duration: 1 })
+        .fromTo(
+          ".slide-2 .about-us-left",
+          { y: 300, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1 },
+          "+0.5"
+        );
+      // if (window.innerWidth > 768) {
+      gsap
+        .timeline({
+          defaults: { ease: "power2.out" },
+          scrollTrigger: {
+            trigger: ".slide-2",
+            start: () => `top top`,
+            end: () => `+=600%`,
+            scrub: true,
+            pin: true,
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+          },
+        })
+        .to(".slide-2 .top", {
+          y: "-100%",
+          opacity: 0,
+          duration: 0.2,
+          delay: 0.1,
+        })
+        .fromTo(
+          ".slide-2 .overlay",
+          { backgroundPosition: `50% 0%` },
+          { backgroundPosition: `50% 100%`, duration: 0.8, ease: "none" },
+          "<"
+        )
+        .fromTo(
+          ".slide-2 .bottom li",
+          { opacity: 0 },
+          { y: 0, opacity: 1, stagger: 0.2, duration: 0.2, ease: "none" },
+          "<"
+        )
+        .to(".slide-2 .bottom", { opacity: 1, duration: 0.2 }, "<");
+      // }
     },
     mouseOverBlock1() {
       const event = new MouseEvent("mouseover");
@@ -1184,7 +1275,7 @@ $maxWidth: 1920;
 .about-us {
   display: flex;
   flex-direction: column;
-  background-image: url("@/assets/laptop.jpg");
+  // background-image: url("@/assets/laptop.jpg");
   background-repeat: no-repeat;
   background-size: 100% 100%;
   position: relative;
@@ -1276,7 +1367,7 @@ $maxWidth: 1920;
     color: #ffffff;
     opacity: 1;
     position: relative;
-    top: 40vh;
+    // top: 10vh;
     margin-left: 7.948vw;
     z-index: 5;
     max-width: 1480px;
@@ -1376,6 +1467,17 @@ $maxWidth: 1920;
   svg {
     overflow: visible;
   }
+  @media screen and (max-width: 1550px) {
+    .info {
+      top: -17vh;
+      margin-left: 5vw;
+    }
+  }
+  @media screen and (max-width: 1920px) {
+    .info {
+      top: -10vh;
+    }
+  }
   @media screen and (max-width: 767px) {
     .about-us-left {
       top: 13vh;
@@ -1407,7 +1509,8 @@ $maxWidth: 1920;
       }
     }
     .info {
-      top: 15vh;
+      top: -33vh;
+      left: 12vw;
       margin-left: 0;
       opacity: 0;
       .info__block {
@@ -1416,7 +1519,11 @@ $maxWidth: 1920;
         margin-bottom: 0;
         .info__item {
           justify-content: start;
-          margin-bottom: 5px;
+          margin-bottom: 10px;
+          .info__icon {
+            width: 74px;
+            height: 74px;
+          }
           &:hover .info__text {
             scale: 1;
             transition: none;

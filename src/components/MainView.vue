@@ -1,22 +1,5 @@
 <template>
   <section class="home">
-    <!-- <section id="sec-graphical-intro"></section> -->
-    <!-- <transition name="fade">
-      <div v-if="show1" class="left">
-        <div class="left__title">
-          Everything complicated is simple, if we take care of the code
-        </div>
-        <div class="left__btn" @click="consoleView">View our works</div>
-      </div>
-    </transition>
-    <transition name="slide-fade">
-      <div v-if="show1" class="right">
-        <img src="@/assets/monitor/monitor.png" alt="monitor" />
-        <div class="right__content">
-          <img src="@/assets/monitor/monitor_img_1.png" alt="monitor img" />
-        </div>
-      </div>
-    </transition> -->
     <div class="container">
       <div class="home-left">
         <div class="home-left__title">
@@ -31,7 +14,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="alma-soft"></div> -->
   </section>
 </template>
 
@@ -46,7 +28,7 @@ export default {
   name: "MainView",
   // data() {
   //   return {
-  //     show1: false,
+  //     st: false,
   //   };
   // },
   methods: {
@@ -204,10 +186,13 @@ canvas {
         max-width: 1250px;
         width: 65.104vw;
       }
+      .home-right__content {
+        top: 3vh;
+      }
       .home-right__content img {
         max-width: 1000px;
         width: 52vw;
-        height: 73vh;
+        height: 76vh;
       }
     }
   }

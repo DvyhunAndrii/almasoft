@@ -1,5 +1,5 @@
 <template>
-  <section id="our-team" class="our-team">
+  <section id="our-team" class="to-top our-team">
     <div class="container">
       <div class="our-team-left">
         <div class="our-team-left__block our-team-left__block-1 active">
@@ -12,9 +12,7 @@
               Our team is made up of passionate individuals who truly love what
               they do and do it with high quality.
             </div>
-            <div class="our-team-left__btn" @click="consoleView">
-              View our works
-            </div>
+            <div class="our-team-left__btn">View our works</div>
           </div>
         </div>
         <div class="our-team-left__block our-team-left__block-2">
@@ -29,9 +27,7 @@
               the latest trends and technologies in web development to ensure
               that our clients stay ahead of the curve.
             </div>
-            <div class="our-team-left__btn" @click="consoleView">
-              meet the Team
-            </div>
+            <div class="our-team-left__btn">meet the Team</div>
           </div>
         </div>
         <div class="our-team-left__block our-team-left__block-3">
@@ -44,9 +40,7 @@
               You can respond to one of our mail, we will definitely contact
               you.
             </div>
-            <div class="our-team-left__btn" @click="consoleView">
-              Become one of us
-            </div>
+            <div class="our-team-left__btn">Become one of us</div>
           </div>
         </div>
       </div>
@@ -202,8 +196,8 @@ export default {
     scrollAnimation() {
       let tl = gsap.timeline();
       const mainNav = document.querySelector(".main-nav");
-      const slide3 = document.querySelector(".slide-3");
-      const slide3Heigth = slide3.clientHeight;
+      // const slide3 = document.querySelector(".slide-3");
+      // const slide3Heigth = slide3.clientHeight;
       const block1 = document.querySelector(".our-team-left__block-1");
       const block2 = document.querySelector(".our-team-left__block-2");
       const block3 = document.querySelector(".our-team-left__block-3");
@@ -217,35 +211,135 @@ export default {
         elLink.classList.add("active");
       }
 
-      gsap.to(slide3, {
-        y: -slide3Heigth,
-        duration: 1,
-        scrollTrigger: {
-          trigger: slide3,
-          start: "top bottom",
-          end: "bottom top",
-          pin: true,
-          pinSpacing: false,
-          // markers: true,
-          toggleActions: "play none none reverse",
+      gsap
+        .timeline({
+          defaults: { ease: "power1.out" },
+          scrollTrigger: {
+            trigger: ".slide-3 .trigger-top",
+            start: () => `top top`,
+            pin: true,
+            invalidateOnRefresh: true,
+            toggleActions: "play none none reverse",
+            onEnter: () => {
+              // preventScroll();
+              block1.classList.add("active");
+              block2.classList.remove("active");
+              block3.classList.remove("active");
+              console.log("remove white");
+              mainNav.classList.remove("white");
+              activeLink();
+            },
+            // onLeave: function () {
+            //   mainNav.classList.add("white");
+            // },
+            // onEnterBack: function () {
+            //   mainNav.classList.add("white");
+            //   activeLink();
+            //   // preventScroll();
+            // },
+            onLeaveBack: function () {
+              // preventScroll();
+              block1.classList.add("active");
+              block2.classList.remove("active");
+              block3.classList.remove("active");
+              console.log("remove white");
+              mainNav.classList.add("white");
+              activeLink();
+            },
+          },
+        })
+        .fromTo(
+          ".slide-3 .from-bottom",
+          { yPercent: 100 },
+          { yPercent: 0, duration: 1 }
+        )
+        .to(".our-team-left", {
+          opacity: 1,
+          duration: 1,
+        })
+        .fromTo(
+          ".our-team-right",
+          { yPercent: 50, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 1 },
+          "1"
+        );
+      gsap
+        .timeline({
+          defaults: { ease: "power2.out" },
+          scrollTrigger: {
+            trigger: ".slide-3",
+            start: () => `top top`,
+            end: () => `+=100%`,
+            scrub: true,
+            pin: true,
+            pinSpacing: true,
+            invalidateOnRefresh: true,
+          },
+        })
+        .to(".our-team-left__block-2", {
+          y: "-70%",
+          duration: 1,
           onEnter: function () {
-            block1.classList.add("active");
-            block2.classList.remove("active");
-            block3.classList.remove("active");
-            console.log("remove white");
-            mainNav.classList.remove("white");
-            activeLink();
+            block2.classList.add("active");
+            block1.classList.remove("active");
           },
-          onEnterBack: function () {
-            block1.classList.add("active");
+          onLeaveBack: function () {
             block2.classList.remove("active");
-            block3.classList.remove("active");
-            console.log("remove white");
-            mainNav.classList.remove("white");
-            activeLink();
+            block1.classList.add("active");
           },
-        },
-      });
+        });
+      // .to(".our-team-left__block-2", {
+      //   y: "-70%",
+      //   duration: 1,
+      //   onEnter: function () {
+      //     block2.classList.add("active");
+      //     block1.classList.remove("active");
+      //   },
+      //   onLeaveBack: function () {
+      //     block2.classList.remove("active");
+      //     block1.classList.add("active");
+      //   },
+      // scrollTrigger: {
+      //   trigger: ".our-team-right",
+      //   start: "-50% 80%",
+      //   end: "top 70%",
+      //   scrub: 2,
+      //   markers: true,
+      //   onEnter: function () {
+      //     block2.classList.add("active");
+      //     block1.classList.remove("active");
+      //   },
+      // },
+      // });
+      // gsap.to(slide3, {
+      //   y: -slide3Heigth,
+      //   duration: 1,
+      //   scrollTrigger: {
+      //     trigger: slide3,
+      //     start: "top bottom",
+      //     end: "bottom top",
+      //     pin: true,
+      //     pinSpacing: false,
+      //     // markers: true,
+      //     toggleActions: "play none none reverse",
+      //     onEnter: function () {
+      //       block1.classList.add("active");
+      //       block2.classList.remove("active");
+      //       block3.classList.remove("active");
+      //       console.log("remove white");
+      //       mainNav.classList.remove("white");
+      //       activeLink();
+      //     },
+      //     onEnterBack: function () {
+      //       block1.classList.add("active");
+      //       block2.classList.remove("active");
+      //       block3.classList.remove("active");
+      //       console.log("remove white");
+      //       mainNav.classList.remove("white");
+      //       activeLink();
+      //     },
+      //   },
+      // });
       // if (window.innerWidth < 768) {
       //   gsap.to(slide3, {
       //     y: -slide3Heigth,
@@ -259,99 +353,99 @@ export default {
       //     },
       //   });
       // }
-      if (window.innerWidth > 768) {
-        gsap.to(".our-team-left", {
-          opacity: 1,
-          duration: 0.7,
-          delay: 1,
-          scrollTrigger: {
-            trigger: slide3,
-            start: "top bottom",
-            toggleActions: "play none none reverse",
-          },
-        });
-        gsap.from(".our-team-right", {
-          y: slide3Heigth * 0.5,
-          opacity: 0,
-          duration: 0.7,
-          delay: 1,
-          scrollTrigger: {
-            trigger: slide3,
-            start: "top bottom",
-            toggleActions: "play none none reverse",
-          },
-        });
-        tl.to(".our-team-left__block-2", {
-          y: "-70%",
-          scrollTrigger: {
-            trigger: ".our-team-right",
-            start: "-50% 80%",
-            end: "top 70%",
-            scrub: 2,
-            onEnter: function () {
-              block2.classList.add("active");
-              block1.classList.remove("active");
-            },
-          },
-        }).to(".our-team-left__block-3", {
-          y: "-90%",
-          opacity: 1,
-          scrollTrigger: {
-            trigger: ".our-team-right",
-            start: "-40% 10%",
-            end: "top 0",
-            scrub: 2,
-            onEnter: function () {
-              block3.classList.add("active");
-              block1.classList.remove("active");
-              block2.classList.remove("active");
-            },
-          },
-        });
+      // if (window.innerWidth > 768) {
+      //   gsap.to(".our-team-left", {
+      //     opacity: 1,
+      //     duration: 0.7,
+      //     delay: 1,
+      //     scrollTrigger: {
+      //       trigger: slide3,
+      //       start: "top bottom",
+      //       toggleActions: "play none none reverse",
+      //     },
+      //   });
+      //   gsap.from(".our-team-right", {
+      //     y: slide3Heigth * 0.5,
+      //     opacity: 0,
+      //     duration: 0.7,
+      //     delay: 1,
+      //     scrollTrigger: {
+      //       trigger: slide3,
+      //       start: "top bottom",
+      //       toggleActions: "play none none reverse",
+      //     },
+      //   });
+      //   tl.to(".our-team-left__block-2", {
+      //     y: "-70%",
+      //     scrollTrigger: {
+      //       trigger: ".our-team-right",
+      //       start: "-50% 80%",
+      //       end: "top 70%",
+      //       scrub: 2,
+      //       onEnter: function () {
+      //         block2.classList.add("active");
+      //         block1.classList.remove("active");
+      //       },
+      //     },
+      //   }).to(".our-team-left__block-3", {
+      //     y: "-90%",
+      //     opacity: 1,
+      //     scrollTrigger: {
+      //       trigger: ".our-team-right",
+      //       start: "-40% 10%",
+      //       end: "top 0",
+      //       scrub: 2,
+      //       onEnter: function () {
+      //         block3.classList.add("active");
+      //         block1.classList.remove("active");
+      //         block2.classList.remove("active");
+      //       },
+      //     },
+      //   });
 
-        tl.to(".content-1", {
-          y: "-80%",
-          scrollTrigger: {
-            trigger: ".our-team-right",
-            start: "-40% 80%",
-            end: "top 70%",
-            scrub: 2,
-          },
-        })
-          .to(".content-2", {
-            y: "-80%",
-            opacity: 1,
-            scrollTrigger: {
-              trigger: ".our-team-right",
-              start: "-50% 80%",
-              end: "top 70%",
-              scrub: 2,
-            },
-          })
-          .to(".content-3", {
-            y: "-80%",
-            opacity: 1,
-            scrollTrigger: {
-              trigger: ".our-team-right",
-              start: "-50% 80%",
-              end: "top 70%",
-              scrub: 2,
-            },
-          })
-          .to(".content-4", {
-            y: "-80%",
-            opacity: 1,
-            scrollTrigger: {
-              trigger: ".our-team-right",
-              start: "-50% 10%",
-              end: "top 0",
-              scrub: 2,
-              onEnter: function () {
-                flowerIconAnimation();
-              },
-            },
-          });
-      }
+      //   tl.to(".content-1", {
+      //     y: "-80%",
+      //     scrollTrigger: {
+      //       trigger: ".our-team-right",
+      //       start: "-40% 80%",
+      //       end: "top 70%",
+      //       scrub: 2,
+      //     },
+      //   })
+      //     .to(".content-2", {
+      //       y: "-80%",
+      //       opacity: 1,
+      //       scrollTrigger: {
+      //         trigger: ".our-team-right",
+      //         start: "-50% 80%",
+      //         end: "top 70%",
+      //         scrub: 2,
+      //       },
+      //     })
+      //     .to(".content-3", {
+      //       y: "-80%",
+      //       opacity: 1,
+      //       scrollTrigger: {
+      //         trigger: ".our-team-right",
+      //         start: "-50% 80%",
+      //         end: "top 70%",
+      //         scrub: 2,
+      //       },
+      //     })
+      //     .to(".content-4", {
+      //       y: "-80%",
+      //       opacity: 1,
+      //       scrollTrigger: {
+      //         trigger: ".our-team-right",
+      //         start: "-50% 10%",
+      //         end: "top 0",
+      //         scrub: 2,
+      //         onEnter: function () {
+      //           flowerIconAnimation();
+      //         },
+      //       },
+      //     });
+      // }
       function flowerIconAnimation() {
         const colours = ["#ca4234", "#cec6be", "#004CA9"];
 
@@ -431,7 +525,6 @@ export default {
 
 <style scoped lang="scss">
 .our-team {
-  // max-height: 1080px;
   height: 100vh;
   padding-top: 30vh;
   overflow: hidden;
@@ -444,7 +537,6 @@ export default {
   }
 
   .our-team-left {
-    // margin-left: 9.948vw;
     position: relative;
     height: 100%;
     opacity: 0;
